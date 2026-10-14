@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#7b9c78">
-<title>Tucker's First Foods — Nature Cozy</title>
+<title>Tucker's First Foods</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
@@ -53,13 +53,13 @@ button{border:none;border-radius:16px;padding:13px 16px;font-weight:800;font-siz
       <div class="badge"><img src="icon-180.png" alt="App icon"></div>
       <div>
         <h1>Tucker's First Foods</h1>
-        <p class="sub">A cozy natural version that feels a little warmer and more organic.</p>
+        <p class="sub">Track first foods, textures, allergens, and feeding progress.</p>
       </div>
     </div>
     <div class="hero-grid">
       <div class="snapshot">
-        <h3>How this version feels</h3>
-        <p>This version is warmer, softer, and more natural-looking.</p>
+        <h3>Getting started</h3>
+        <p>Start with smooth single-ingredient foods, then gradually move into thicker textures and combinations.</p>
         <p><b>Stage 1:</b> smoother single ingredients in a balanced suggested order.</p>
         <p><b>Stage 2:</b> thicker combinations after single foods go well.</p>
       </div>
@@ -139,8 +139,8 @@ const stage1 = [["Sweet potato", "✦"], ["Pear", ""], ["Infant oatmeal cereal",
 const stage2 = [["Apple + oatmeal", "★"], ["Pear + oatmeal", "★"], ["Banana + avocado", "♥"], ["Sweet potato + chicken", "●"], ["Carrot + beef", "● ✦"], ["Peas + turkey", "●"], ["Lentil + carrot", "● ✦"], ["Black bean purée", "●"], ["Chickpea purée", "●"], ["Broccoli + potato", "✦"], ["Spinach + pear", "● ✦"]];
 const stage3 = [["Mashed avocado", "♥ ◇"], ["Mashed banana", "◇"], ["Soft-cooked carrot pieces", "✦ ◇"], ["Soft broccoli florets", "✦ ◇"], ["Very soft sweet potato pieces", "✦ ◇"], ["Shredded tender chicken", "● ◇"], ["Shredded tender beef", "● ◇"], ["Soft beans, lightly mashed", "● ◇"], ["Ripe pear / peach pieces", "◇"], ["Thicker oatmeal with fruit", "★ ◇"]];
 const allergens = [["Peanut — smooth peanut butter thinned well", "⚠ ♥"], ["Egg — fully cooked", "⚠ ●"], ["Dairy — plain full-fat yogurt", "⚠"], ["Wheat", "⚠"], ["Soy — tofu", "⚠ ●"], ["Sesame — tahini thinned well", "⚠ ♥"], ["Tree nut — nut butter thinned well", "⚠ ♥"], ["Fish — soft/flaked or purée", "⚠ ●"], ["Shellfish — appropriate purée/texture", "⚠ ●"]];
-const STORE_"tucker_first_foods_nature_cozy_v1" = "tucker_first_foods_nature_cozy_v1";
-let saved = JSON.parse(localStorage.getItem(STORE_"tucker_first_foods_nature_cozy_v1") || '{}');
+const STORE_KEY = 'tucker_first_foods_v1';
+let saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
 function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);}
 function card(name,symbols,group,exposures){
@@ -188,10 +188,10 @@ function save(){
     card.querySelectorAll('[data-field]').forEach(el=>{obj[el.dataset.field] = el.type === 'checkbox' ? el.checked : el.value;});
     all[card.dataset.id] = obj;
   });
-  localStorage.setItem(STORE_"tucker_first_foods_nature_cozy_v1", JSON.stringify(all));
+  localStorage.setItem(STORE_KEY, JSON.stringify(all));
   saved = all;
 }
-function resetAll(){ if(!confirm('Clear every checkmark, date, and note?')) return; localStorage.removeItem(STORE_"tucker_first_foods_nature_cozy_v1"); location.reload(); }
+function resetAll(){ if(!confirm('Clear every checkmark, date, and note?')) return; localStorage.removeItem(STORE_KEY); location.reload(); }
 function exportData(){ save(); const blob = new Blob([JSON.stringify(saved,null,2)],{type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Tucker_First_Foods_Backup.json'; a.click(); URL.revokeObjectURL(a.href); }
 </script>
 </body>
