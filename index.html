@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#7b9c78">
+<title>Tucker's First Foods — Nature Cozy</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+:root{--bg:#f4f0e6;--bg2:#edf4ee;--card:#fffdf9;--ink:#364334;--muted:#727c68;--line:#d9e0d3;--accent:#7b9c78;--accent-deep:#5f7a5c;--accent-soft:#e8f0e6;--peach:#f5ead8;--warn:#fff7ea;--warnline:#ead7b6;--warnink:#615438;--shadow:0 10px 30px rgba(63,87,80,.10);--radius:22px;}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(circle at top left, rgba(255,255,255,.7), transparent 28%),linear-gradient(180deg,var(--bg2),var(--bg) 220px, var(--bg) 100%);}
+.app{max-width:820px;margin:0 auto;padding:16px 14px 110px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(145deg,#fafcf8,#f1f6f0 42%, #f7efe1 100%);border:1px solid var(--line);border-radius:28px;padding:20px 18px 18px;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:999px;opacity:.45;pointer-events:none}
+.hero:before{width:160px;height:160px;background:#e7efe6;right:-55px;top:-40px}
+.hero:after{width:130px;height:130px;background:#f4e8d2;left:-35px;bottom:-55px}
+.topline{display:flex;gap:14px;align-items:center;position:relative;z-index:1}
+.badge{width:64px;height:64px;border-radius:20px;flex:0 0 auto;background:linear-gradient(160deg,var(--accent),var(--accent-deep));display:grid;place-items:center;box-shadow:0 10px 18px rgba(88,120,111,.22)}
+.badge img{width:64px;height:64px;border-radius:20px;display:block}
+h1{font-size:30px;line-height:1.02;margin:0 0 6px;font-weight:800;letter-spacing:-.03em} .sub{font-size:14px;color:var(--muted);margin:0}
+.hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:12px;margin-top:14px;position:relative;z-index:1}
+.snapshot,.quicktips{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:18px;padding:12px}
+.snapshot h3,.quicktips h3{font-size:14px;margin:0 0 8px} .snapshot p,.quicktips p{font-size:13px;margin:6px 0;color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1} .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px;font-size:12px;box-shadow:0 2px 5px rgba(60,86,79,.04)}
+nav{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow-x:auto;margin:12px -14px 0;padding:10px 14px;background:rgba(255,255,255,.74);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,225,221,.95)}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 13px;box-shadow:0 2px 8px rgba(60,86,79,.05)}
+.section{margin-top:18px} .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px} .section-head h2{font-size:24px;line-height:1.1;margin:0;letter-spacing:-.02em}
+.kicker{font-size:12px;font-weight:700;color:var(--accent-deep);background:#e8f0e6;padding:7px 10px;border-radius:999px;border:1px solid #d2dece}
+.note{background:linear-gradient(180deg,var(--accent-soft),#fff);border:1px solid var(--line);color:var(--ink);border-radius:18px;padding:12px 14px;font-size:13px;margin-bottom:12px}
+.callout{background:linear-gradient(180deg,var(--warn),#fff);border:1px solid var(--warnline);color:var(--warnink);border-radius:18px;padding:13px 14px;font-size:13px;margin:12px 0}
+.grid{display:grid;gap:12px} .food-card{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 8px 18px rgba(63,87,80,.06)}
+.food-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px} .food-name{font-size:17px;font-weight:800;letter-spacing:-.01em} .symbols{font-size:18px;letter-spacing:3px;white-space:nowrap} .mini{font-size:12px;color:var(--muted);margin-top:3px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px} label{display:block;font-size:12px;color:var(--muted);font-weight:700}
+input[type="date"],input[type="text"],textarea{width:100%;margin-top:5px;border:1px solid var(--line);border-radius:14px;padding:11px 12px;background:#fff;color:var(--ink);font-size:15px}
+textarea{min-height:82px;resize:vertical}
+.checkline{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px} .check{display:flex;align-items:center;gap:8px;background:#fbfcfc;border:1px solid var(--line);border-radius:14px;padding:8px 11px;font-size:13px;color:var(--ink)}
+.check input{appearance:none;-webkit-appearance:none;width:23px;height:23px;border-radius:999px;border:2px solid var(--accent);display:grid;place-content:center;background:white;margin:0} .check input:checked{border-color:var(--accent-deep)} .check input:checked::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.progress-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 15px;box-shadow:0 6px 14px rgba(63,87,80,.05);margin:10px 0} .progress-card strong{display:block;font-size:15px;margin-bottom:6px}
+details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:0 5px 12px rgba(63,87,80,.04)} summary{font-weight:800;cursor:pointer}
+.toolbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:10px;justify-content:center;padding:10px max(14px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+button{border:none;border-radius:16px;padding:13px 16px;font-weight:800;font-size:14px;box-shadow:0 5px 12px rgba(63,87,80,.08)} button.primary{background:linear-gradient(180deg,var(--accent),var(--accent-deep));color:white} button.secondary{background:var(--accent-soft);color:var(--ink)}
+.footer-space{height:8px} @media (min-width:680px){.grid.two{grid-template-columns:1fr 1fr}} @media (max-width:640px){.hero-grid,.row{grid-template-columns:1fr}.topline{align-items:flex-start}h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="hero">
+    <div class="topline">
+      <div class="badge"><img src="icon-180.png" alt="App icon"></div>
+      <div>
+        <h1>Tucker's First Foods</h1>
+        <p class="sub">A cozy natural version that feels a little warmer and more organic.</p>
+      </div>
+    </div>
+    <div class="hero-grid">
+      <div class="snapshot">
+        <h3>How this version feels</h3>
+        <p>This version is warmer, softer, and more natural-looking.</p>
+        <p><b>Stage 1:</b> smoother single ingredients in a balanced suggested order.</p>
+        <p><b>Stage 2:</b> thicker combinations after single foods go well.</p>
+      </div>
+      <div class="quicktips">
+        <h3>Quick reminders</h3>
+        <p>• Formula is still the main nutrition early on.</p>
+        <p>• Most ordinary foods can be tracked with 2 exposures.</p>
+        <p>• Major allergens matter more for regular re-exposure once tolerated.</p>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="chip">★ Iron-fortified</span>
+      <span class="chip">● Naturally iron-rich</span>
+      <span class="chip">⚠ Major allergen</span>
+      <span class="chip">✦ Vitamin C-rich</span>
+      <span class="chip">♥ Healthy fat</span>
+      <span class="chip">◇ Texture practice</span>
+    </div>
+  </section>
+
+  <nav>
+    <a href="#stage1">Stage 1</a>
+    <a href="#stage2">Stage 2</a>
+    <a href="#stage3">Stage 3</a>
+    <a href="#allergens">Allergens</a>
+    <a href="#progression">Amounts + Meals</a>
+  </nav>
+
+  <section class="section" id="stage1">
+    <div class="section-head"><h2>Stage 1 — Smooth + Simple</h2><span class="kicker">balanced order</span></div>
+    <div class="note">This stage is arranged in a suggested balanced order, so you are not stuck doing all the iron-rich foods right away. Lower-allergen foods use 2 exposure circles.</div>
+    <div id="stage1-list" class="grid two"></div>
+  </section>
+
+  <section class="section" id="stage2">
+    <div class="section-head"><h2>Stage 2 — Thicker + Mixed</h2><span class="kicker">next step</span></div>
+    <div class="note">Start once smooth purées are going well. Thicken familiar foods and combine ingredients Tucker already tolerates.</div>
+    <div id="stage2-list" class="grid two"></div>
+  </section>
+
+  <section class="section" id="stage3">
+    <div class="section-head"><h2>Stage 3 — Chunkier + Texture</h2><span class="kicker">skill-based</span></div>
+    <div class="note">The goal is learning texture, not staying on purées forever. Move based on feeding skill rather than a strict age cutoff.</div>
+    <div id="stage3-list" class="grid two"></div>
+  </section>
+
+  <section class="section" id="allergens">
+    <div class="section-head"><h2>Major Allergens</h2><span class="kicker">slower + regular</span></div>
+    <div class="callout">Use the 3 circles below as early exposures for the major allergens. They do <b>not</b> have to be 3 consecutive days. Once tolerated, the more important thing is keeping them in regular rotation.</div>
+    <div id="allergen-list" class="grid two"></div>
+  </section>
+
+  <section class="section" id="progression">
+    <div class="section-head"><h2>When to Increase Amount + Feedings</h2><span class="kicker">easy progression</span></div>
+    <div class="note">Use this like a cheat sheet. Formula stays primary at first; the progression is gradual and based on interest.</div>
+    <div class="progress-card"><strong>Starting out</strong>Offer <b>1–2 teaspoons once daily</b>. Let him eat more if he wants, but do not worry about a full serving at first.</div>
+    <div class="progress-card"><strong>Once the spoon is going better</strong>Gradually work toward roughly <b>1–2 tablespoons</b>, then more if he clearly wants it.</div>
+    <div class="progress-card"><strong>When 1 meal feels easy</strong>Add a <b>second solids meal</b>. A realistic rhythm is one meal at daycare and one after getting home.</div>
+    <div class="progress-card"><strong>As Tucker gets older</strong>Move toward <b>2–3 meals per day</b>, then 3 meals + snacks closer to age 1 as milk slowly becomes less dominant.</div>
+    <details open>
+      <summary>Example with your daycare schedule</summary>
+      <p><b>~5:30–5:45 AM:</b> bottle</p>
+      <p><b>6:30 AM:</b> daycare drop-off</p>
+      <p><b>Daycare:</b> bottles as usual; add a solids meal once he is ready for 2 meals/day</p>
+      <p><b>~4:40 PM:</b> home</p>
+      <p><b>Right after getting home:</b> purée/solids meal</p>
+      <p><b>~6:30–7:00 PM:</b> last bottle</p>
+      <p><b>~7:30 PM:</b> bedtime</p>
+    </details>
+    <div class="callout">Good stopping points: turning away, closing his mouth, pushing the spoon away, or losing interest.</div>
+  </section>
+  <div class="footer-space"></div>
+</div>
+<div class="toolbar"><button class="secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button><button class="secondary" onclick="resetAll()">Reset</button><button class="primary" onclick="exportData()">Save Backup</button></div>
+<script>
+const stage1 = [["Sweet potato", "✦"], ["Pear", ""], ["Infant oatmeal cereal", "★"], ["Green beans", ""], ["Apple", ""], ["Peas", "●"], ["Banana", ""], ["Carrot", "✦"], ["Puréed chicken", "●"], ["Peach", "✦"], ["Avocado", "♥"], ["Butternut squash", "✦"], ["Puréed beef", "●"], ["Prunes", ""], ["Mango", "✦"], ["Infant multigrain cereal", "★"], ["Zucchini", ""], ["Puréed turkey", "●"], ["Pumpkin", "✦"]];
+const stage2 = [["Apple + oatmeal", "★"], ["Pear + oatmeal", "★"], ["Banana + avocado", "♥"], ["Sweet potato + chicken", "●"], ["Carrot + beef", "● ✦"], ["Peas + turkey", "●"], ["Lentil + carrot", "● ✦"], ["Black bean purée", "●"], ["Chickpea purée", "●"], ["Broccoli + potato", "✦"], ["Spinach + pear", "● ✦"]];
+const stage3 = [["Mashed avocado", "♥ ◇"], ["Mashed banana", "◇"], ["Soft-cooked carrot pieces", "✦ ◇"], ["Soft broccoli florets", "✦ ◇"], ["Very soft sweet potato pieces", "✦ ◇"], ["Shredded tender chicken", "● ◇"], ["Shredded tender beef", "● ◇"], ["Soft beans, lightly mashed", "● ◇"], ["Ripe pear / peach pieces", "◇"], ["Thicker oatmeal with fruit", "★ ◇"]];
+const allergens = [["Peanut — smooth peanut butter thinned well", "⚠ ♥"], ["Egg — fully cooked", "⚠ ●"], ["Dairy — plain full-fat yogurt", "⚠"], ["Wheat", "⚠"], ["Soy — tofu", "⚠ ●"], ["Sesame — tahini thinned well", "⚠ ♥"], ["Tree nut — nut butter thinned well", "⚠ ♥"], ["Fish — soft/flaked or purée", "⚠ ●"], ["Shellfish — appropriate purée/texture", "⚠ ●"]];
+const STORE_"tucker_first_foods_nature_cozy_v1" = "tucker_first_foods_nature_cozy_v1";
+let saved = JSON.parse(localStorage.getItem(STORE_"tucker_first_foods_nature_cozy_v1") || '{}');
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);}
+function card(name,symbols,group,exposures){
+  const id = group + '-' + slug(name);
+  return `
+  <div class="food-card" data-id="${id}">
+    <div class="food-top">
+      <div>
+        <div class="food-name">${esc(name)}</div>
+        <div class="mini">Track first date, exposures, and any notes.</div>
+      </div>
+      <div class="symbols">${symbols}</div>
+    </div>
+    <div class="row">
+      <label>First date<input type="date" data-field="date"></label>
+      <label>Likes it?<input type="text" placeholder="Loved it / okay / nope" data-field="likes"></label>
+    </div>
+    <div class="checkline">
+      ${Array.from({length:exposures},(_,i)=>`<label class="check"><input type="checkbox" data-field="exp${i+1}"> Exposure ${i+1}</label>`).join('')}
+    </div>
+    <label style="margin-top:12px">Reaction / notes<textarea data-field="notes" placeholder="Texture, amount, reaction, or anything else"></textarea></label>
+  </div>`;
+}
+function render(target,list,group,exposures){document.getElementById(target).innerHTML=list.map(x=>card(x[0],x[1],group,exposures)).join('');}
+render('stage1-list',stage1,'s1',2);
+render('stage2-list',stage2,'s2',2);
+render('stage3-list',stage3,'s3',2);
+render('allergen-list',allergens,'alg',3);
+
+document.querySelectorAll('.food-card').forEach(card=>{
+  const id = card.dataset.id;
+  const state = saved[id] || {};
+  card.querySelectorAll('[data-field]').forEach(el=>{
+    const f = el.dataset.field;
+    if(el.type === 'checkbox') el.checked = !!state[f];
+    else el.value = state[f] || '';
+    el.addEventListener('input',save);
+    el.addEventListener('change',save);
+  });
+});
+function save(){
+  const all = {};
+  document.querySelectorAll('.food-card').forEach(card=>{
+    const obj = {};
+    card.querySelectorAll('[data-field]').forEach(el=>{obj[el.dataset.field] = el.type === 'checkbox' ? el.checked : el.value;});
+    all[card.dataset.id] = obj;
+  });
+  localStorage.setItem(STORE_"tucker_first_foods_nature_cozy_v1", JSON.stringify(all));
+  saved = all;
+}
+function resetAll(){ if(!confirm('Clear every checkmark, date, and note?')) return; localStorage.removeItem(STORE_"tucker_first_foods_nature_cozy_v1"); location.reload(); }
+function exportData(){ save(); const blob = new Blob([JSON.stringify(saved,null,2)],{type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Tucker_First_Foods_Backup.json'; a.click(); URL.revokeObjectURL(a.href); }
+</script>
+</body>
+</html>
